@@ -110,7 +110,7 @@ def read_dicoms(path, primary=True, original=True):
     dcm_parameters = []
     unique_set = []  # need this because too often there are duplicates of dicom files with different names
     i = 0
-    for fname in tqdm(allfnames):
+    for fname in allfnames:
         filename_ = os.path.splitext(os.path.split(fname)[1])
         i += 1
         if filename_[0] != 'DICOMDIR':
@@ -211,7 +211,7 @@ def postrocessing(label_image, spare=[]):
             origlabels_maxsub[r.max_intensity] = r.area
             region_to_lobemap[r.label] = r.max_intensity
 
-    for r in tqdm(regions):
+    for r in regions:
         if (r.area < origlabels_maxsub[r.max_intensity] or r.max_intensity in spare) and r.area>2: # area>2 improves runtime because small areas 1 and 2 voxel will be ignored
             bb = bbox_3D(regionmask == r.label)
             sub = regionmask[bb[0]:bb[1], bb[2]:bb[3], bb[4]:bb[5]]
